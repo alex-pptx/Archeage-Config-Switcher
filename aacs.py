@@ -206,6 +206,14 @@ class ProfileFrame(customtkinter.CTkFrame):
             try:
                 shutil.copy2(source_path, destination_path)
                 print(f"Copied {source_path} to {destination_path}")
+                CTkMessagebox(
+                    title="Success", 
+                    message="Successfully loaded config: " + directory_name, 
+                    justify="center", 
+                    font= customtkinter.CTkFont(family="Arial", weight="bold"), 
+                    icon="check",
+                    sound=True
+                )
             except Exception as e:
                 print(f"Error copying file: {e}")
         else:
