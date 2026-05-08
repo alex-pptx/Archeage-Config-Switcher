@@ -177,6 +177,8 @@ class ProfileFrame(customtkinter.CTkFrame):
             text="Load Config", 
             font= customtkinter.CTkFont(family="Arial", weight="bold"),
             text_color = "white", 
+            fg_color="#1d4ed8", 
+            hover_color="#1e40af",
             command=self.loadConfigButton_event
         )
         self.loadConfigButton.grid(row=2, column=0, padx=10, pady=(10, 0), sticky="ew")
@@ -256,9 +258,9 @@ class ProfileFrame(customtkinter.CTkFrame):
         self.optionmenu.set("No configs found")
 
     def enable_widgets(self):
-        self.optionmenu.configure(state="enabled")
-        self.loadConfigButton.configure(state="enabled")
-        self.deleteConfigButton.configure(state="enabled")
+        self.optionmenu.configure(state="normal")
+        self.loadConfigButton.configure(state="normal")
+        self.deleteConfigButton.configure(state="normal")
         self.optionmenu.set(self.optionmenu.cget("values")[0])
 
 
