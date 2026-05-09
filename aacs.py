@@ -4,10 +4,16 @@ from CTkMessagebox import CTkMessagebox
 import configparser
 import shutil
 import os
+import sys
 import ctypes
 import ctypes.wintypes
 from pathlib import Path
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 # GUID structure required by SHGetKnownFolderPath
 class GUID(ctypes.Structure):
@@ -340,7 +346,7 @@ class App(customtkinter.CTk):
         self.grid_rowconfigure((0,1), weight=0)
 
         # Set the window icon
-        iconpath = os.path.join(os.getcwd(), 'aacs.ico')
+        iconpath = resource_path("aacs.ico")
         self.iconbitmap(iconpath)
         
 
@@ -381,7 +387,7 @@ class App(customtkinter.CTk):
     
     def newConfigButton_event(self):
         dialog = customtkinter.CTkInputDialog(text="Type in a name for this profile:", title="New Profile")
-        iconpath = os.path.join(os.getcwd(), 'aacs.ico')
+        iconpath = resource_path("aacs.ico")
         dialog.after(250, lambda: dialog.iconbitmap(iconpath))
 
         profile_name = dialog.get_input()  # waits for input 
